@@ -1,11 +1,23 @@
-import { USER_LOGGED_IN } from '../types';
+import { USER_LOGGED_IN, USER_LOGGED_OUT } from '../types';
 import api from '../api';
 
-export const userLoggedIn = (user) => ({
+export const userLoggedIn = user => ({
     type: USER_LOGGED_IN,
     user
-})
+});
 
-export const login = (credentials) => (dispatch) =>
-    api.user.login(credentials).then(res => dispatch(userLoggedIn(res.data.user)));
+export const userLoggedOut = () => ({
+    type: USER_LOGGED_OUT,
+});
+
+export const login = credentials => dispatch =>
+    api.user.login(credentials).then(res => {
+        localStorage.setItem('bookworm_token', res.data.user.token)
+        dispatch(userLoggedIn(res.data.user));
+});
+
+export const logout = () => dispatch => {
+    localStorage.removeItem('bookworm_token');
+    dispatch(userLoggedOut());
+};
 
