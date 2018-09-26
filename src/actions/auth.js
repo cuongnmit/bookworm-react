@@ -11,9 +11,9 @@ export const userLoggedOut = () => ({
 });
 
 export const login = credentials => dispatch =>
-    api.user.login(credentials).then(res => {
-        localStorage.setItem('bookworm_token', res.data.user.token)
-        dispatch(userLoggedIn(res.data.user));
+    api.user.login(credentials).then(user => {
+        localStorage.setItem('bookworm_token', user.token)
+        dispatch(userLoggedIn(user));
 });
 
 export const logout = () => dispatch => {
