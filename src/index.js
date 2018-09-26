@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import 'semantic-ui-css/semantic.css';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -21,7 +21,7 @@ if (localStorage.getItem('bookworm_token')) {
 ReactDOM.render(
     <BrowserRouter>
     <Provider store={store} >
-        <App />
+        <Route component={App} />
     </Provider>
     </BrowserRouter>
     , document.getElementById("root"));
