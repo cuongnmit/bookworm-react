@@ -54,7 +54,7 @@ class LoginForm extends Component {
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="example@example.com" value={data.email} onChange={this.onChange} />
                     { errors.email && <InlineError text={errors.email} /> }
-                    </Form.Field>
+                </Form.Field>
                 <Form.Field error={errors.password} >
                     <label htmlFor="password">Password</label>
                     <input type="password" id="password" name="password" value={data.password} onChange={this.onChange} />
